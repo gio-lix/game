@@ -68,7 +68,7 @@ const Canvas = () => {
     }, [])
 
     return (
-        <canvas onMouseMove={(e) => paddleProps.x = e.clientX - 155 } ref={canvasRef} width="700" height="500" className='border border-black bg-gray-700'/>
+        <canvas onMouseMove={(e) => paddleProps.x = e.clientX - 300} ref={canvasRef} width="700" height="500" className='border border-black bg-gray-700'/>
     );
 };
 

@@ -14,6 +14,8 @@ export default function AllBroken(bricks, player, canvas, ballObj) {
     if (total === bricks.length) {
         player.level++;
         // ResetBall(ballObj, canvas, paddleProps);
+        brickObj.y = canvas.height - 20;
         brickObj.y = 50;
+
     }
 }
