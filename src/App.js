@@ -3,7 +3,7 @@ import Canvas from "./game/Canvas";
 function App() {
   return (
       <div className="flex justify-center mt-10">
-          <p>HEader</p>
+          <p>Game</p>
         <Canvas />
       </div>
   );
