@@ -5,6 +5,9 @@ import WallHit from "../utils/WallHit";
 import PaddleRect from "./Paddle";
 import Brick from "./Brick";
 import BrickCollision from "../utils/BrickHit";
+import PaddleHit from "../utils/PaddleHit";
+import PlayerStats from "../utils/PlayerState";
+import AllBroken from "../utils/AllBroke";
 
 let bricks = [];
 
@@ -15,11 +18,15 @@ const Canvas = () => {
         const render = () => {
             const canvas = canvasRef.current
             const ctx = canvas.getContext("2d")
+
+            paddleProps.y = canvas.height - 30
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
             // ball and wall Collision
-            WallHit(ballObj, canvas)
+            WallHit(ballObj, canvas, player,paddleProps)
+            AllBroken(bricks,player,canvas,ballObj)
 
+            PlayerStats(ctx,player, canvas )
             //brick
             let newBrickSet = Brick(player.level, bricks, canvas, brickObj);
 
@@ -38,7 +45,6 @@ const Canvas = () => {
                 breakCollision = BrickCollision(ballObj, bricks[i]);
 
                 if (breakCollision.hit && !bricks[i].broke) {
-                    // console.log(brickCollision);
                     if (breakCollision.axis === "X") {
                         ballObj.dx *= -1;
                         bricks[i].broke = true;
@@ -47,11 +53,14 @@ const Canvas = () => {
                         bricks[i].broke = true;
                     }
                     player.score += 10;
+
                 }
             }
 
 
             PaddleRect(ctx, canvas, paddleProps)
+
+            PaddleHit(ballObj, paddleProps)
 
             requestAnimationFrame(render)
         }

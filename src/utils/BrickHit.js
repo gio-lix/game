@@ -1,4 +1,5 @@
 export default function BrickCollision(circle, rect) {
+
     var distX = Math.abs(circle.x - rect.x - rect.width / 2);
     var distY = Math.abs(circle.y - rect.y - rect.height / 2);
 
